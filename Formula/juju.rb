@@ -2,20 +2,31 @@ require 'formula'
 
 class Juju < Formula
   skip_clean :all
-  url 'https://launchpad.net/ubuntu/precise/+source/juju/0.5+bzr531-0ubuntu1/+files/juju_0.5+bzr531.orig.tar.gz'
-  head 'lp:juju', :using => :bzr
-  homepage 'https://launchpad.net/ubuntu/+source/juju'
+  #url 'https://launchpad.net/ubuntu/precise/+source/juju/0.5+bzr531-0ubuntu1/+files/juju_0.5+bzr531.orig.tar.gz'
+  #head 'lp:juju', :using => :bzr
+  url 'lp:juju', :using => :bzr
+  homepage 'http://juju.ubuntu.com/'
   md5 '09be4a473644f3c88f64c3e29491c9af'
-  version '0.5.531'
-  
+  version '0.5-bzr'
+
   depends_on 'bzr'
+  #depends_on 'python'
   depends_on 'zookeeper'
+  #depends_on 'txzookeeper' => :python
+  #depends_on 'PyYAML' => :python
+  #depends_on 'txaws' => :python
+  #depends_on 'pydot' => :python
+  #depends_on 'oauth' => :python
+
 
   def install
     ENV.deparallelize
     ENV.no_optimization
-    system "sudo","/usr/bin/easy_install","txzookeeper","PyYAML", "txaws", "pydot","oauth"
-    system "sudo","/usr/bin/python", "./setup.py", "install"
+    #system "C_INCLUDE_PATH=$HOMEBREW_PREFIX/Cellar/zookeeper/3.4.3/include/c-client-src/ pip install zkpython"
+    #system "/usr/local/bin/brew", "uninstall", "zookeeper"
+    #system "/usr/local/bin/brew", "install", "zookeeper", "--python", "--head"
+    system "sudo", "easy_install", "PyYAML", "txaws", "pydot", "oauth", "txzookeeper"
+    system "sudo","python","setup.py", "install"
   end
 
   def test
