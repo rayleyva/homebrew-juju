@@ -10,8 +10,9 @@ class Juju < Formula
   version '0.5-bzr'
 
   depends_on 'bzr'
-  #depends_on 'python'
   depends_on 'zookeeper'
+
+  #depends_on 'python'
   #depends_on 'txzookeeper' => :python
   #depends_on 'PyYAML' => :python
   #depends_on 'txaws' => :python
@@ -22,11 +23,9 @@ class Juju < Formula
   def install
     ENV.deparallelize
     ENV.no_optimization
-    #system "C_INCLUDE_PATH=$HOMEBREW_PREFIX/Cellar/zookeeper/3.4.3/include/c-client-src/ pip install zkpython"
-    #system "/usr/local/bin/brew", "uninstall", "zookeeper"
-    #system "/usr/local/bin/brew", "install", "zookeeper", "--python", "--head"
-    system "sudo", "easy_install", "PyYAML", "txaws", "pydot", "oauth", "txzookeeper"
-    system "sudo","python","setup.py", "install"
+    system "sudo", "chown", "-R", "$USER:staff", "/usr/local"
+    system "easy_install", "PyYAML", "txaws", "pydot", "oauth", "txzookeeper"
+    system "python","setup.py", "install"
   end
 
   def test
