@@ -23,7 +23,10 @@ class Juju < Formula
   def install
     ENV.deparallelize
     ENV.no_optimization
-    system "sudo", "chown", "-R", "$USER:staff", "/usr/local"
+    system "sudo", "chgrp", "-R", "staff", "/usr/local"
+    system "sudo", "chgrp", "-R", "staff", "/Library/Python"
+    system "sudo", "chmod", "-R", "+wg", "/usr/local"
+    system "sudo", "chmod", "-R", "+wg", "/usr/Python"
     system "easy_install", "PyYAML", "txaws", "pydot", "oauth", "txzookeeper"
     system "python","setup.py", "install"
   end
