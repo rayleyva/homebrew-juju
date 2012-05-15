@@ -28,7 +28,7 @@ class Juju < Formula
     system "sudo", "chmod", "-R", "+wg", "/usr/local"
     system "sudo", "chmod", "-R", "+wg", "/Library/Python"
     system "sudo", "easy_install", "PyYAML", "txaws", "pydot", "oauth", "txzookeeper"
-    system "python","setup.py", "install"
+    system "sudo", "python","setup.py", "install"
   end
 
   def test
