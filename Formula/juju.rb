@@ -25,8 +25,8 @@ class Juju < Formula
     ENV.no_optimization
     system "sudo", "chgrp", "-R", "staff", "/usr/local"
     system "sudo", "chgrp", "-R", "staff", "/Library/Python"
-    system "sudo", "chmod", "-R", "+wg", "/usr/local"
-    system "sudo", "chmod", "-R", "+wg", "/Library/Python"
+    system "sudo", "chmod", "-R", "g+w", "/usr/local"
+    system "sudo", "chmod", "-R", "g+w", "/Library/Python"
     system "sudo", "easy_install", "PyYAML", "txaws", "pydot", "oauth", "txzookeeper"
     system "sudo", "python","setup.py", "install"
   end
